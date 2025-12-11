@@ -1,0 +1,496 @@
+/* =========================================
+   VARIABLES & RESET
+   ========================================= */
+:root {
+  --color-principal: #0f2352;
+  --color-secundario: #f97316;
+  --bg-blanco: #ffffff;
+  --bg-gris-claro: #f4f4f4;
+  --bg-oscuro: #404040;
+  --fuente-principal: "Arial", system-ui, sans-serif;
+  --sombra-suave: 0 10px 30px rgba(0, 0, 0, 0.08);
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+html {
+  scroll-behavior: smooth;
+}
+body {
+  font-family: var(--fuente-principal);
+  background-color: var(--bg-blanco);
+  color: var(--color-principal);
+  line-height: 1.6;
+  overflow-x: hidden;
+}
+img {
+  max-width: 100%;
+  display: block;
+  object-fit: cover;
+}
+a {
+  text-decoration: none;
+  color: inherit;
+  transition: all 0.3s ease;
+}
+ul {
+  list-style: none;
+}
+
+/* Contenedores */
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+.container-fluid {
+  width: 95%;
+  max-width: 1600px;
+  margin: 0 auto;
+}
+
+/* =========================================
+   HEADER (Configuración Izquierda - Derecha)
+   ========================================= */
+header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 80px;
+  z-index: 1000;
+
+  /* ALINEACIÓN CLAVE */
+  display: flex;
+  justify-content: space-between; /* Logo a la orilla Izq, Menú a la orilla Der */
+  align-items: center;
+  padding: 0 50px; /* Separación de los bordes de la pantalla */
+
+  transition: all 0.4s ease;
+  background: transparent;
+}
+
+/* Clases JS */
+header.nav-hide {
+  transform: translateY(-100%);
+}
+header.solid-bg {
+  background-color: rgba(255, 255, 255, 0.98);
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  height: 70px;
+}
+
+/* LOGO */
+.logo {
+  height: 80px; /* Tamaño del logo */
+  transition: filter 0.3s;
+}
+header.solid-bg .logo {
+  filter: none;
+} /* Logo original en fondo blanco */
+
+/* MENÚ DE NAVEGACIÓN */
+.navbar ul {
+  display: flex;
+  gap: 30px; /* Espacio entre palabras */
+}
+
+.navbar a {
+  font-weight: 600;
+  font-size: 0.95rem;
+  color: var(--bg-blanco);
+}
+header.solid-bg .navbar a {
+  color: var(--color-principal);
+}
+
+/* Botón Contactar */
+.btn-contact {
+  border: 1px solid var(--bg-blanco);
+  padding: 8px 20px;
+  border-radius: 2px;
+}
+header.solid-bg .btn-contact {
+  background-color: var(--color-principal);
+  color: var(--bg-blanco) !important;
+  border-color: var(--color-principal);
+}
+.btn-contact:hover {
+  background-color: var(--bg-blanco);
+  color: var(--color-principal) !important;
+}
+
+/* =========================================
+   HERO SECTION
+   ========================================= */
+#hero {
+  height: 100vh;
+  background: url("../img/hero.png") no-repeat center center/cover;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
+.hero-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.6);
+  z-index: 1;
+}
+.hero-content {
+  position: relative;
+  z-index: 2;
+  color: var(--bg-blanco);
+  padding: 20px;
+  max-width: 900px;
+}
+.hero-content h1 {
+  font-size: 3.5rem;
+  margin-bottom: 20px;
+  color: white;
+}
+.hero-content p {
+  font-size: 1.25rem;
+  margin-bottom: 35px;
+  color: #e0e0e0;
+}
+.btn-primary {
+  display: inline-block;
+  padding: 15px 40px;
+  background-color: var(--bg-blanco);
+  color: var(--color-principal);
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+.btn-primary:hover {
+  background-color: transparent;
+  color: var(--bg-blanco);
+  box-shadow: 0 0 0 2px var(--bg-blanco) inset;
+}
+
+/* Hero Logo Boxes */
+.hero-logo-boxes {
+  position: absolute;
+  bottom: -20px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  gap: 300px;
+  z-index: 3;
+}
+
+.hero-logo-box {
+  width: 200px;
+  height: 200px;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s ease;
+}
+
+.hero-logo-box img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+#divisiones {
+  padding: 20px 0;
+}
+.section-header {
+  text-align: center;
+  margin-bottom: 10px;
+}
+.section-header h2 {
+  font-size: 2.5rem;
+  margin-bottom: 10px;
+}
+
+/* 1. EL CONTENEDOR TIPO GRID (Para ponerlas lado a lado) */
+.divisions-grid {
+    display: grid;
+    /* Esto crea 3 columnas de igual tamaño */
+    grid-template-columns: repeat(3, 1fr); 
+    gap: 20px; /* Espacio entre las tarjetas */
+    margin-top: 15px;
+}
+
+/* 2. LA TARJETA INDIVIDUAL (Antes division-row) */
+.division-card {
+    display: flex;
+    flex-direction: column; /* IMPORTANTE: Esto pone la imagen arriba y el texto abajo */
+    background: var(--bg-blanco); /* Fondo blanco por si acaso */
+    box-shadow: var(--sombra-suave); /* Sombra para darle profundidad */
+    border-radius: 8px; /* Bordes redondeados opcionales */
+    overflow: hidden; /* Para que la imagen respete el borde redondeado */
+    height: 100%; /* Para que todas las tarjetas tengan la misma altura */
+}
+
+/* 3. LA IMAGEN */
+/* 3. LA IMAGEN */
+/* 1. LA IMAGEN (El contenedor gris/blanco) */
+.div-img {
+    /* RECOMENDACIÓN: Usa px, no %. 
+       15% es muy poco y varía. 180px asegura que el logo quepa siempre. */
+    flex: 0 0 120px; 
+    width: 100%;
+    
+    display: flex;
+    justify-content: center; /* Centra horizontalmente */
+    
+    align-items: flex-end; /* Mantiene el logo pegado abajo */
+    padding-bottom: 5px;   /* Reducimos el margen inferior */
+    
+    background-color: var(--bg-blanco);
+}
+
+/* 2. LA ETIQUETA IMG (El logo en sí) */
+.div-img img {
+    width: auto;
+    height: auto;
+    
+    /* Controla el tamaño máximo para que no se salga */
+    max-height: 100%; 
+    max-width: 90%;
+    
+    /* IMPORTANTE: Usa 'contain' para logos. 'cover' los recorta. */
+    object-fit: contain; 
+    
+    transition: transform 0.5s ease;
+}
+/* Efecto Zoom al pasar el mouse sobre la tarjeta */
+.division-card:hover .div-img img {
+    transform: scale(1.1);
+}
+
+/* 4. EL TEXTO */
+.div-text {
+    padding: 0px 20px 20px 20px; /* Espacio interno para que el texto respire */
+    text-align: center; /* En tarjetas verticales, el texto centrado suele verse mejor */
+    flex: 1; /* Empuja el contenido para llenar la altura */
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* Centra el icono */
+}
+
+/* Ajustes del Icono */
+.icon-box {
+    /* Asegura que no tenga margen arriba */
+    margin-top: 0; 
+    margin-bottom: 5px;
+    font-size: 2rem;
+    color: var(--color-primario);
+}
+
+.div-text h3 {
+    margin-top: 0;      /* Quita espacio extra arriba del título */
+    margin-bottom: 5px; /* Espacio moderado entre título y párrafo */
+    font-size: 1.25rem; /* Opcional: ajustar tamaño si es muy grande */
+}
+.div-text p {
+    font-size: 0.85rem; /* Un poco más pequeño para que quepa todo */
+    line-height: 1.4;  /* Altura de línea compacta pero legible */
+    margin-bottom: 0;
+}
+
+/* --- RESPONSIVE (Para celulares y tablets) --- */
+
+/* =========================================
+   PROYECTOS 
+   ========================================= */
+#proyectos {
+  padding: 20px 0;
+  background-color: var(--bg-gris-claro);
+}
+.bento-grid {
+  display: grid;
+  grid-template-columns: 1.5fr 1fr;
+  gap: 20px;
+  height: 800px;
+  margin-top: 40px;
+}
+.bento-col-left,
+.bento-col-right {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+.project-card {
+  position: relative;
+  background-size: cover;
+  background-position: center;
+  flex: 1;
+  overflow: hidden;
+  cursor: pointer;
+}
+.project-info {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  padding: 30px;
+  background: linear-gradient(to top, rgba(0, 0, 0, 0.9), transparent);
+  color: white;
+  transform: translateY(20px);
+  opacity: 0;
+  transition: all 0.4s ease;
+}
+.project-card:hover .project-info {
+  transform: translateY(0);
+  opacity: 1;
+}
+.project-info h4 {
+  color: white;
+  font-size: 1.5rem;
+  margin: 0;
+}
+
+/* =========================================
+   CIFRAS
+   ========================================= */
+.stats-section {
+  padding: 80px 0;
+  background-color: var(--color-principal);
+  color: white;
+}
+.stats-container {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  flex-wrap: wrap;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+.stat-item {
+  text-align: center;
+  padding: 20px;
+}
+.stat-item i {
+  font-size: 2.5rem;
+  margin-bottom: 15px;
+  opacity: 0.8;
+}
+.stat-item .number {
+  display: block;
+  font-size: 3.5rem;
+  font-weight: 700;
+  margin-bottom: 5px;
+}
+
+/* =========================================
+   FOOTER
+   ========================================= */
+footer {
+  background-color: var(--bg-oscuro);
+  color: #94a3b8;
+  padding-top: 80px;
+}
+.footer-content {
+  display: flex;
+  justify-content: space-between;
+  gap: 40px;
+  padding-bottom: 60px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+.footer-col {
+  flex: 1;
+}
+.footer-logo {
+  width: 160px;
+  margin-bottom: 25px;
+  filter: brightness(0) invert(1);
+}
+.social-links a {
+  font-size: 1.2rem;
+  margin-right: 50px;
+  color: white;
+}
+.mission-col h4,
+.contact-col h4 {
+  color: white;
+  margin-bottom: 20px;
+  font-size: 1.1rem;
+}
+.contact-col li {
+  margin-bottom: 15px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.footer-bottom {
+  padding: 25px 0;
+  text-align: center;
+  font-size: 0.85rem;
+  background-color: #020617;
+}
+
+/* =========================================
+   RESPONSIVE
+   ========================================= */
+/* --- TABLETS Y PANTALLAS MEDIANAS (Menos de 992px) --- */
+@media (max-width: 992px) {
+    /* Ajuste para las tarjetas: pasamos de 3 a 2 columnas */
+    .divisions-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+/* --- MÓVILES (Menos de 768px) --- */
+@media (max-width: 768px) {
+    
+    /* 1. Header y Navegación */
+    header {
+        padding: 0 20px;
+        justify-content: center;
+    }
+    .navbar {
+        display: none; /* Ocultar menú en móvil */
+    }
+
+    /* 2. Hero Section */
+    .hero-content h1 {
+        font-size: 2.5rem;
+    }
+
+    /* 3. Divisiones (NUEVO SISTEMA GRID) */
+    /* En celulares, pasamos a 1 sola columna (una tarjeta debajo de otra) */
+    .divisions-grid {
+        grid-template-columns: 1fr;
+    }
+
+    /* 4. Divisiones (SISTEMA VIEJO - Opcional) */
+    /* Si ya borraste el HTML antiguo de .division-row, puedes borrar esto. 
+       Si aún tienes páginas con el diseño viejo, déjalo. */
+    .division-row,
+    .division-row.inversa {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    /* 5. Bento Grid y Proyectos */
+    .bento-grid {
+        display: flex;
+        flex-direction: column;
+        height: auto;
+    }
+    .project-card {
+        height: 300px;
+    }
+
+    /* 6. Footer */
+    .footer-content {
+        flex-direction: column;
+        text-align: center;
+    }
+    .contact-col li {
+        justify-content: center;
+    }
+}
