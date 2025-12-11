@@ -410,8 +410,24 @@ footer {
 }
 .social-links a {
   font-size: 1.2rem;
-  margin-right: 50px;
+  margin-right: 20px;
   color: white;
+}
+
+/* Footer social row is hidden by default (desktop) and only shown on small screens */
+.footer-social { display: none; }
+
+/* Desktop-only social links (inline SVGs) */
+.social-links {
+  display: flex;
+  gap: 18px;
+  align-items: center;
+}
+.social-links a svg { display: block; color: #fff; }
+
+/* Hide the desktop social-links on small screens (mobile uses .footer-social) */
+@media (max-width: 768px) {
+  .social-links.desktop-only { display: none; }
 }
 .mission-col h4,
 .contact-col h4 {
@@ -424,6 +440,13 @@ footer {
   display: flex;
   align-items: center;
   gap: 10px;
+}
+.contact-col li i,
+.contact-col li svg,
+.contact-col .contact-icon { 
+  font-size: 1rem;
+  min-width: 20px;
+  color: #9fb0c6;
 }
 .footer-bottom {
   padding: 25px 0;
@@ -486,19 +509,30 @@ footer {
 
   /* Footer: arrange mission, contact and logo in a single row; social icons go in a bottom row */
   .footer-content {
-    flex-direction: row;
-    align-items: flex-start;
-    justify-content: space-between;
-    gap: 16px;
-    padding-bottom: 20px;
+    display: grid;
+    grid-template-columns: 1fr minmax(160px, 1fr) 96px;
+    gap: 12px 20px;
+    align-items: center;
+    padding-bottom: 12px;
+    border-bottom: 1px solid rgba(255,255,255,0.06);
   }
-  .mission-col { order: 1; flex: 1 1 40%; text-align: left; }
-  .contact-col { order: 2; flex: 1 1 35%; text-align: left; }
-  .brand-col { order: 3; flex: 0 0 110px; text-align: right; }
-  .brand-col .footer-logo { margin: 0; }
-  .contact-col li { justify-content: flex-start; }
+  .mission-col { text-align: left; padding-right: 8px; }
+  .contact-col {
+    text-align: left;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    justify-self: center;
+  }
+  .brand-col {
+    justify-self: end;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+  }
+  .brand-col .footer-logo { width: 96px; margin: 0; }
 
-  /* Footer social row (new element) */
+  /* Footer social row hidden by default in this block; shown in the separate rule below */
   .footer-social { display: none; }
 }
 
@@ -560,11 +594,23 @@ footer {
 @media (max-width: 768px) {
   .footer-social {
     display: flex;
-    gap: 12px;
-    justify-content: space-evenly;
+    gap: 24px;
+    justify-content: center;
     align-items: center;
-    padding: 12px 16px 20px;
+    padding: 14px 12px 18px;
     width: 100%;
+    border-top: 1px solid rgba(255,255,255,0.06);
   }
-  .footer-social a { color: #fff; font-size: 1.2rem; }
+  .footer-social a { color: #fff; font-size: 1.6rem; padding: 8px; }
+
+  /* Tweak contact icons and spacing for clarity */
+  .contact-col li { justify-content: flex-start; }
+  .contact-col li i { font-size: 1.05rem; min-width: 18px; color: #9fb0c6; }
+  .contact-col li { gap: 10px; }
+
+  /* Reduce footer logo on very small screens */
+  @media (max-width: 480px) {
+    .brand-col .footer-logo { width: 80px; }
+    .footer-social a { font-size: 1.4rem; }
+  }
 }
