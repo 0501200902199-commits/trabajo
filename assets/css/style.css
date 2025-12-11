@@ -475,12 +475,31 @@ footer {
   .bento-grid { display: flex; flex-direction: column; gap: 16px; height: auto; }
   .project-card { min-height: 240px; }
 
-  /* Cifras: apilar verticalmente */
-  .stats-container { flex-direction: column; gap: 20px; padding: 20px 0; }
+  /* Cifras: mostrar en cuadrícula 2x2 para mejor legibilidad móvil */
+  .stats-container {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 18px;
+    padding: 12px 0;
+    align-items: stretch;
+  }
 
-  /* Footer */
-  .footer-content { flex-direction: column; text-align: center; gap: 24px; }
-  .contact-col li { justify-content: center; }
+  /* Footer: arrange mission, contact and logo in a single row; social icons go in a bottom row */
+  .footer-content {
+    flex-direction: row;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 16px;
+    padding-bottom: 20px;
+  }
+  .mission-col { order: 1; flex: 1 1 40%; text-align: left; }
+  .contact-col { order: 2; flex: 1 1 35%; text-align: left; }
+  .brand-col { order: 3; flex: 0 0 110px; text-align: right; }
+  .brand-col .footer-logo { margin: 0; }
+  .contact-col li { justify-content: flex-start; }
+
+  /* Footer social row (new element) */
+  .footer-social { display: none; }
 }
 
 /* --- MÓVILES PEQUEÑOS (<= 576px) --- */
@@ -535,4 +554,17 @@ footer {
   .project-card { min-height: 220px; }
   .section-header h2 { font-size: 1.6rem; }
   .divisions-grid { gap: 12px; }
+}
+
+/* Show footer social row on small screens and style it */
+@media (max-width: 768px) {
+  .footer-social {
+    display: flex;
+    gap: 12px;
+    justify-content: space-evenly;
+    align-items: center;
+    padding: 12px 16px 20px;
+    width: 100%;
+  }
+  .footer-social a { color: #fff; font-size: 1.2rem; }
 }

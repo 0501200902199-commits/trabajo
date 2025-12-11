@@ -160,11 +160,6 @@
         <div class="container footer-content">
             <div class="footer-col brand-col">
                 <img src="assets/img/logo-header.png" alt="Logo Footer" class="footer-logo">
-                <div class="social-links">
-                    <a href="#"><i class="fab fa-linkedin"></i></a>
-                    <a href="#"><i class="fab fa-instagram"></i></a>
-                    <a href="#"><i class="fab fa-twitter"></i></a>
-                </div>
             </div>
 
             <div class="footer-col mission-col">
@@ -181,14 +176,24 @@
                 </ul>
             </div>
         </div>
+
+        <!-- Footer social row (shown on mobile) -->
+        <div class="footer-social" aria-label="Redes sociales">
+            <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin"></i></a>
+            <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+            <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+        </div>
+
         <div class="footer-bottom">
             <p>&copy; 2025 Sinergia Constructiva Global. Todos los derechos reservados.</p>
         </div>
     </footer>
 
-    <!-- Scroll to top button (fixed bottom-left) -->
+    <!-- Scroll to top button (uses inline SVG for reliable rendering) -->
     <button id="scrollTopBtn" class="scroll-top" aria-label="Subir al inicio">
-        <i class="fas fa-chevron-up" aria-hidden="true"></i>
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false">
+            <path d="M6 15l6-6 6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+        </svg>
     </button>
 
     <script src="assets/js/main.js"></script>
