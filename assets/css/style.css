@@ -435,62 +435,104 @@ footer {
 /* =========================================
    RESPONSIVE
    ========================================= */
-/* --- TABLETS Y PANTALLAS MEDIANAS (Menos de 992px) --- */
+/* --- TABLETS Y PANTALLAS MEDIANAS (<= 992px) --- */
 @media (max-width: 992px) {
-    /* Ajuste para las tarjetas: pasamos de 3 a 2 columnas */
-    .divisions-grid {
-        grid-template-columns: repeat(2, 1fr);
-    }
+  /* Divisiones: de 3 columnas a 2 */
+  .divisions-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 18px;
+  }
+
+  /* Bento: pasar a una columna más compacta en tablets */
+  .bento-grid {
+    grid-template-columns: 1fr 1fr;
+    gap: 18px;
+    height: auto;
+  }
+
+  .project-card { min-height: 280px; }
+
+  /* Ajustes del header */
+  header { padding: 0 28px; }
 }
 
-/* --- MÓVILES (Menos de 768px) --- */
+/* --- TABLETS PEQUEÑOS / PHABLETS (<= 768px) --- */
 @media (max-width: 768px) {
-    
-    /* 1. Header y Navegación */
-    header {
-        padding: 0 20px;
-        justify-content: center;
-    }
-    .navbar {
-        display: none; /* Ocultar menú en móvil */
-    }
+  /* Header y navegación */
+  header { padding: 0 16px; justify-content: space-between; }
+  .logo { height: 64px; }
+  .navbar { display: none; }
 
-    /* 2. Hero Section */
-    .hero-content h1 {
-        font-size: 2.5rem;
-    }
+  /* Hero más compacto */
+  .hero-content h1 { font-size: 2rem; }
+  .hero-content p { font-size: 1rem; }
+  .hero-logo-boxes { display: none; }
 
-    /* 3. Divisiones (NUEVO SISTEMA GRID) */
-    /* En celulares, pasamos a 1 sola columna (una tarjeta debajo de otra) */
-    .divisions-grid {
-        grid-template-columns: 1fr;
-    }
+  /* Divisiones: una columna para móviles */
+  .divisions-grid { grid-template-columns: 1fr; gap: 14px; }
 
-    /* 4. Divisiones (SISTEMA VIEJO - Opcional) */
-    /* Si ya borraste el HTML antiguo de .division-row, puedes borrar esto. 
-       Si aún tienes páginas con el diseño viejo, déjalo. */
-    .division-row,
-    .division-row.inversa {
-        flex-direction: column;
-        text-align: center;
-    }
+  /* Bento: apilar y reducir alturas */
+  .bento-grid { display: flex; flex-direction: column; gap: 16px; height: auto; }
+  .project-card { min-height: 240px; }
 
-    /* 5. Bento Grid y Proyectos */
-    .bento-grid {
-        display: flex;
-        flex-direction: column;
-        height: auto;
-    }
-    .project-card {
-        height: 300px;
-    }
+  /* Cifras: apilar verticalmente */
+  .stats-container { flex-direction: column; gap: 20px; padding: 20px 0; }
 
-    /* 6. Footer */
-    .footer-content {
-        flex-direction: column;
-        text-align: center;
-    }
-    .contact-col li {
-        justify-content: center;
-    }
+  /* Footer */
+  .footer-content { flex-direction: column; text-align: center; gap: 24px; }
+  .contact-col li { justify-content: center; }
+}
+
+/* --- MÓVILES PEQUEÑOS (<= 576px) --- */
+@media (max-width: 576px) {
+  .hero-content h1 { font-size: 1.6rem; }
+  .hero-content p { font-size: 0.95rem; }
+  .section-header h2 { font-size: 1.6rem; }
+  .logo { height: 56px; }
+  .container { padding: 0 12px; }
+  .bento-grid { gap: 12px; }
+  .project-card { min-height: 200px; }
+  .div-text p { font-size: 0.9rem; }
+}
+
+/* Scroll-to-top button */
+.scroll-top {
+  position: fixed;
+  right: 20px;
+  bottom: 20px;
+  width: 52px;
+  height: 52px;
+  border-radius: 50%;
+  background: var(--color-principal);
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 6px 18px rgba(0,0,0,0.2);
+  border: none;
+  cursor: pointer;
+  z-index: 1500;
+  opacity: 0;
+  transform: translateY(12px);
+  transition: opacity .25s ease, transform .25s ease;
+  -webkit-tap-highlight-color: transparent;
+}
+.scroll-top i { font-size: 1rem; }
+.scroll-top.show {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+@media (max-width: 480px) {
+  .scroll-top { right: 16px; bottom: 18px; width:56px; height:56px; }
+  .hero-logo-boxes { gap: 20px; bottom: -10px; }
+  .hero-logo-box { width: 120px; height: 120px; }
+  .hero-content h1 { font-size: 2rem; }
+  .logo { height: 60px; }
+  header { padding: 0 16px; }
+  .navbar a { font-size: 0.9rem; }
+  .bento-grid { height: auto; gap: 16px; }
+  .project-card { min-height: 220px; }
+  .section-header h2 { font-size: 1.6rem; }
+  .divisions-grid { gap: 12px; }
 }

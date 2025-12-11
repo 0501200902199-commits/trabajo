@@ -29,3 +29,28 @@ window.addEventListener('scroll', function() {
     // Actualizamos la posición "anterior" para la próxima vez que se mueva
     lastScrollTop = currentScroll <= 0 ? 0 : currentScroll; 
 });
+
+/* Scroll-to-top button behavior */
+const scrollBtn = document.getElementById('scrollTopBtn');
+if (scrollBtn) {
+    const toggleScrollBtn = () => {
+        if (window.scrollY > 300) scrollBtn.classList.add('show');
+        else scrollBtn.classList.remove('show');
+    };
+
+    // Initial check and listeners
+    toggleScrollBtn();
+    window.addEventListener('scroll', toggleScrollBtn, { passive: true });
+
+    scrollBtn.addEventListener('click', () => {
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+
+    // Accessibility: allow Enter / Space to activate
+    scrollBtn.addEventListener('keydown', (e) => {
+        if (e.key === 'Enter' || e.key === ' ') {
+            e.preventDefault();
+            scrollBtn.click();
+        }
+    });
+}
